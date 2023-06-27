@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2023 at 06:46 AM
+-- Generation Time: Jun 27, 2023 at 05:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -97,9 +97,9 @@ INSERT INTO `tb_pelanggan` (`id_pelanggan`, `nama`, `alamat`, `no_tlp`) VALUES
 --
 
 CREATE TABLE `tb_perbaikan` (
+  `id_transaksi` varchar(10) NOT NULL,
   `no_plat` varchar(10) NOT NULL,
   `id_montir` varchar(10) NOT NULL,
-  `tanggal` date NOT NULL,
   `id_sparepart` varchar(10) NOT NULL,
   `harga_jasa` decimal(10,0) NOT NULL,
   `keterangan` text NOT NULL
@@ -109,12 +109,12 @@ CREATE TABLE `tb_perbaikan` (
 -- Dumping data for table `tb_perbaikan`
 --
 
-INSERT INTO `tb_perbaikan` (`no_plat`, `id_montir`, `tanggal`, `id_sparepart`, `harga_jasa`, `keterangan`) VALUES
-('B 1470 RZQ', 'M003', '2023-06-03', 'BL01', 100000, 'Pergantian Ban luar denpan sebelah kiri'),
-('B 4190 XYZ', 'M002', '2023-06-04', 'A001', 200000, 'Pergantian Aki'),
-('B 5090 JKT', 'M001', '2023-06-04', 'F001', 600000, 'Pergantian Filter Udara dan Service'),
-('B 6901 BKN', 'M003', '2023-06-04', 'BU01', 650000, 'Pergantian Busi dan Service'),
-('B 8923 GIZ', 'M002', '2023-06-03', 'V001', 300000, 'Ganti Velg');
+INSERT INTO `tb_perbaikan` (`id_transaksi`, `no_plat`, `id_montir`, `id_sparepart`, `harga_jasa`, `keterangan`) VALUES
+('P01T', 'B 1470 RZQ', 'M003', 'BL01', 100000, 'Pergantian Ban luar depan sebelah kiri'),
+('P02T', 'B 4190 XYZ', 'M002', 'A001', 200000, 'Pergantian Aki'),
+('P03T', 'B 5090 JKT', 'M001', 'F001', 600000, 'Pergantian Filter udara & service'),
+('P04T', 'B 6901 BKN', 'M003', 'BU01', 650000, 'Pergantian Busi & service'),
+('P05T', 'B 8923 GIZ', 'M002', 'V001', 300000, 'Ganti Velg');
 
 -- --------------------------------------------------------
 
@@ -196,6 +196,7 @@ ALTER TABLE `tb_pelanggan`
 --
 ALTER TABLE `tb_perbaikan`
   ADD KEY `no_plat` (`no_plat`),
+  ADD KEY `id_transaksi` (`id_transaksi`),
   ADD KEY `id_montir` (`id_montir`),
   ADD KEY `id_sparepart` (`id_sparepart`);
 
@@ -227,8 +228,9 @@ ALTER TABLE `tb_mobil`
 --
 ALTER TABLE `tb_perbaikan`
   ADD CONSTRAINT `tb_perbaikan_ibfk_1` FOREIGN KEY (`no_plat`) REFERENCES `tb_mobil` (`no_plat`),
-  ADD CONSTRAINT `tb_perbaikan_ibfk_2` FOREIGN KEY (`id_montir`) REFERENCES `tb_montir` (`id_montir`),
-  ADD CONSTRAINT `tb_perbaikan_ibfk_3` FOREIGN KEY (`id_sparepart`) REFERENCES `tb_sparepart` (`id_sparepart`);
+  ADD CONSTRAINT `tb_perbaikan_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `tb_transaksi` (`id_transaksi`),
+  ADD CONSTRAINT `tb_perbaikan_ibfk_3` FOREIGN KEY (`id_montir`) REFERENCES `tb_montir` (`id_montir`),
+  ADD CONSTRAINT `tb_perbaikan_ibfk_4` FOREIGN KEY (`id_sparepart`) REFERENCES `tb_sparepart` (`id_sparepart`);
 
 --
 -- Constraints for table `tb_transaksi`
