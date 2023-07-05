@@ -22,7 +22,7 @@
 
 ### Berdasarkan perintah diatas. Berikut ini adalah entitas-entitas yang dibutuhkan untuk database ServiceMobil:
 
-Berdasarkan perintah diatas. Berikut ini adalah entitas-entitas yang dibutuhkan untuk database Peminjaman ServiceMobil:
+Berdasarkan perintah diatas. Berikut ini adalah entitas-entitas yang dibutuhkan untuk database Peminjaman Ruang Kelas:
 
 - tb_pelanggan: Merepresentasikan informasi mengenai pelanggan yang beratribut: id_pelanggan(primary key), nama, alamat, no_tlp.
 
